@@ -99,7 +99,7 @@ fuzz example.com using skills to identify any login pages and files with extensi
 
 ## Understanding Skills
 
-### Read SKILL.md to understand how the agent skill works and how instructions are interpreted.
+### Read `SKILL.md` to understand how the agent skill works and how instructions are interpreted.
 
 This will help you:
 
