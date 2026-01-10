@@ -65,6 +65,7 @@ gemini
 ```
 <img width="1900" height="941" alt="image" src="https://github.com/user-attachments/assets/c9124b3a-6b3f-46c1-b90b-947187052805" />
 
+#### Type `/settings` hit `enter`
 ```shell
 /settings
 ```
