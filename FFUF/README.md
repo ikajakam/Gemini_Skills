@@ -25,7 +25,7 @@ This project is based on and inspired by the work of **[`rez0`](https://x.com/re
   brew install gemini-cli
   ```
 #### Preview Release
-- Note: `skills` are currently **only available** in the `preview`
+- Note: `skills` are currently **only available** in `preview`
 
 ```shell
 npm install -g @google/gemini-cli@preview
@@ -89,7 +89,7 @@ gemini
 
 #### Usage
 ```shell
-Generate ffuf command to find hidden files with extensions php, bak, and old on example.com
+fuzz example.com using skills to identify any login pages and files with extensions php and bak
 ```
 #### When you run this prompt
 
