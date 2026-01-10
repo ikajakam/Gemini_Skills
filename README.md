@@ -2,7 +2,7 @@
 
 #### follow https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
 
-## Understanding the Skill
+## Understanding Skills
 
 ### Read SKILL.md to understand how the agent skill works and how instructions are interpreted.
 
