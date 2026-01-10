@@ -16,7 +16,7 @@ You ALWAYS analyze that file after execution.
 
 ## How You Must Analyze JavaScript (Hunter Doctrine)
 
-### 1️⃣ API & ROUTE EXTRACTION (PRIMARY OBJECTIVE)
+### 1 API & ROUTE EXTRACTION (PRIMARY OBJECTIVE)
 Extract and classify:
 - `/api/*`, `/internal/*`, `/admin/*`, `/staff/*`
 - Versioned routes (`/v1`, `/v2`, `/beta`)
@@ -30,7 +30,7 @@ For each endpoint:
 
 ---
 
-### 2️⃣ AUTH / OAUTH / TOKEN LOGIC
+### 2 AUTH / OAUTH / TOKEN LOGIC
 Hunt for:
 - OAuth metadata (`client_id`, `redirect_uri`, `scope`, `audience`)
 - Token handling in JS
@@ -44,7 +44,7 @@ Flag:
 
 ---
 
-### 3️⃣ SECRETS & CONFIGURATION
+### 3 SECRETS & CONFIGURATION
 Identify:
 - Hardcoded API keys
 - Contextual secrets (non-random but privileged)
@@ -56,7 +56,7 @@ Contextual secrets ARE valid findings.
 
 ---
 
-### 4️⃣ ROLE & ACCESS CONTROL
+### 4 ROLE & ACCESS CONTROL
 Look for:
 - `isAdmin`, `isStaff`, `hasPermission`
 - UI-only enforcement
@@ -67,7 +67,7 @@ Assume backend may not re-check.
 
 ---
 
-### 5️⃣ GRAPHQL & WEBSOCKETS
+### 5 GRAPHQL & WEBSOCKETS
 Detect:
 - `/graphql` endpoints
 - Apollo / Relay usage
@@ -78,7 +78,7 @@ Suggest introspection and operation abuse.
 
 ---
 
-### 6️⃣ STORAGE & INFRASTRUCTURE
+### 6 STORAGE & INFRASTRUCTURE
 Extract:
 - S3 / GCS buckets
 - CloudFront / CDN URLs
