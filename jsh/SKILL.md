@@ -9,36 +9,125 @@ description: JavaScript security auditor using jsh_helper for reconnaissance
 This skill assists in auditing JavaScript files found during reconnaissance. It works in tandem with the `jsh_helper.py` script.
 
 ## Workflow
-1.  **Gather Data**: The user runs `python3 jsh_helper.py --domain <target>`.
-2.  **Analyze**: The script generates a `summary_for_ai.txt` file.
-3.  **Audit**: Gemini reads this file and identifies vulnerabilities.
 
-## How to Analyze
-When the user provides a `summary_for_ai.txt` file content or path, perform the following checks:
+You ALWAYS analyze that file after execution.
 
-### 1. Hardcoded Secrets
-Scan for:
-- API Keys (Google, AWS, Stripe, etc.)
-- Bearer Tokens / JWTs
-- Basic Auth credentials
-- Encryption keys or salts
+---
 
-### 2. Vulnerable Code Patterns
-- **DOM XSS**: Look for `location.search` or `location.hash` feeding into `innerHTML` or `document.write`.
-- **Open Redirects**: Look for `window.location = user_input`.
-- **Debug Logic**: Look for `isAdmin`, `debug: true`, or exposed source maps.
+## How You Must Analyze JavaScript (Hunter Doctrine)
 
-### 3. Hidden Endpoints
-Extract any API routes (e.g., `/api/v1/admin/users`) that look interesting for IDOR or unauthorized access.
+### 1️⃣ API & ROUTE EXTRACTION (PRIMARY OBJECTIVE)
+Extract and classify:
+- `/api/*`, `/internal/*`, `/admin/*`, `/staff/*`
+- Versioned routes (`/v1`, `/v2`, `/beta`)
+- Relative & dynamically built paths
+- Mobile-only endpoints
 
-## Reporting Format
-For each finding, provide:
+For each endpoint:
+- Guess auth level
+- Suggest IDOR / auth-bypass / mass-assignment testing
+- Suggest ffuf wordlists or parameters
+
+---
+
+### 2️⃣ AUTH / OAUTH / TOKEN LOGIC
+Hunt for:
+- OAuth metadata (`client_id`, `redirect_uri`, `scope`, `audience`)
+- Token handling in JS
+- JWT parsing / trust decisions
+- `localStorage` / `sessionStorage` auth
+
+Flag:
+- Frontend-trusted claims
+- Missing scope / audience validation
+- Static OAuth config
+
+---
+
+### 3️⃣ SECRETS & CONFIGURATION
+Identify:
+- Hardcoded API keys
+- Contextual secrets (non-random but privileged)
+- Feature flags
+- Debug / dev toggles
+- Kill-switches
+
+Contextual secrets ARE valid findings.
+
+---
+
+### 4️⃣ ROLE & ACCESS CONTROL
+Look for:
+- `isAdmin`, `isStaff`, `hasPermission`
+- UI-only enforcement
+- Feature gating in JS
+- Role checks before API calls
+
+Assume backend may not re-check.
+
+---
+
+### 5️⃣ GRAPHQL & WEBSOCKETS
+Detect:
+- `/graphql` endpoints
+- Apollo / Relay usage
+- Operation names
+- Subscriptions / WebSockets
+
+Suggest introspection and operation abuse.
+
+---
+
+### 6️⃣ STORAGE & INFRASTRUCTURE
+Extract:
+- S3 / GCS buckets
+- CloudFront / CDN URLs
+- Upload endpoints
+- Media paths
+
+Consider IDOR, overwrite, or public access.
+
+---
+
+## Reporting Rules (STRICT)
+
+For EACH finding:
 - **[SEVERITY] Title**
-- **File**: (Filename from the summary)
-- **Evidence**: The specific line of code.
-- **Why it matters**: Brief exploitation scenario.
+- **Category** (API / Auth / Secret / Logic)
+- **Evidence** (exact JS code block)
+- **Attack Idea** (clear next step)
 
-## Helper Script Usage
-If the user asks "How do I scan a domain?", tell them:
-```bash
-python3 ~/.gemini/skills/jsh/jsh_helper.py --domain target.com
+No generic advice. No theory. Only exploitable surface.
+
+## JavaScript Discovery Coverage
+
+JavaScript discovery includes:
+- Live HTML script sources (primary)
+- Historical JavaScript via Wayback (secondary)
+- Known application entry paths such as:
+  /admin, /app, /dashboard, /login
+
+These are used to surface hidden or privileged attack surface.
+
+
+## Inline JavaScript Handling (STRICT)
+
+Inline JavaScript files (files prefixed with `inline_`) are considered
+**low-signal context only**.
+
+### Rules:
+- DO NOT create primary findings from inline JS
+- DO NOT assign severity based solely on inline JS
+- DO NOT use inline JS as standalone evidence in `analysis.txt`
+
+### Allowed use:
+- Inline JS may be referenced ONLY to:
+  - Corroborate findings found in external JS files
+  - Provide configuration context (e.g. storefront IDs, feature flags)
+
+### Enforcement:
+- All findings written to `analysis.txt` MUST be supported by
+  non-inline JavaScript files unless explicitly stated otherwise.
+
+Inline JS findings should default to INFO severity unless
+confirmed exploitable through backend interaction.
