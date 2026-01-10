@@ -94,7 +94,7 @@ fuzz example.com using skills to identify any login pages and files with extensi
 #### When you run this prompt
 
 - Gemini CLI reads `SKILL.md` to understand how and when the `ffuf skill` should be used
-- `ffuf_helper.py` is helps to generate and execute the appropriate ffuf commands
+- `ffuf_helper.py` helps to generate and execute the appropriate ffuf commands
 - The resulting command and output are returned directly in the Gemini CLI session 
 
 happy fuzzing 
