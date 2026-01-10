@@ -4,7 +4,7 @@
 
 This project is based on and inspired by the work of **[`rez0`](https://x.com/rez0__)**
 
-- Original FFUF skill & helper logic:  
+- Original FFUF skill & helper logic  
  https://github.com/jthack/ffuf_claude_skill/tree/main/ffuf-skill
 
   - GitHub : https://github.com/jthack  
@@ -89,7 +89,7 @@ gemini
 
 #### Usage
 ```shell
-Generate an ffuf command to find hidden files with extensions php, bak, and old
+Generate ffuf command to find hidden files with extensions php, bak, and old on example.com
 ```
 #### When you run this prompt
 
