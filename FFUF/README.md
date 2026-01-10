@@ -87,4 +87,14 @@ gemini
 <img width="1889" height="947" alt="image" src="https://github.com/user-attachments/assets/787b830e-9596-4fcb-b5fe-f4852bbbd9dd" />
 <img width="1894" height="726" alt="image" src="https://github.com/user-attachments/assets/704a8190-e6bd-45f2-92d1-a4843b68772e" />
 
+#### Usage
+```shell
+Generate an ffuf command to find hidden files with extensions php, bak, and old
+```
+#### When you run this prompt
 
+- Gemini CLI reads `SKILL.md` to understand how and when the `ffuf skill` should be used
+- `ffuf_helper.py` is helps to generate and execute the appropriate ffuf commands
+- The resulting command and output are returned directly in the Gemini CLI session 
+
+happy fuzzing 
