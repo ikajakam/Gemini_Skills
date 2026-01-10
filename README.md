@@ -11,7 +11,8 @@ This project is based on and inspired by the work of **[`rez0`](https://x.com/re
   - X (Twitter) : https://x.com/rez0__
 
 
-#### follow https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
+#### follow for instructions to use `Gemini Agent Skill`
+https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
 
 ## Understanding Skills
 
