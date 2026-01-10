@@ -106,6 +106,6 @@ This will help you:
 - Understand how the agent selects and executes ffuf commands
 - Craft more precise prompts for your own use cases
 - Customize or extend behavior by updating `SKILL.md` to match your workflow
-- Modifying `SKILL.md` allows you to tailor the skill to your recon style and testing needs.
+- Modifying `SKILL.md` allows you to tailor skill to your recon style and testing needs.
 
 happy fuzzing 
