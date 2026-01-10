@@ -4,7 +4,7 @@
 
 ## Understanding Skills
 
-### Read SKILL.md to understand how the agent skill works and how instructions are interpreted.
+### Read `SKILL.md` to understand how agent skill works and how instructions are interpreted.
 
 This will help you:
 
