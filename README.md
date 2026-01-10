@@ -1,5 +1,16 @@
 # Gemini Skills 
 
+## Credits & Acknowledgements
+
+This project is based on and inspired by the work of **[`rez0`](https://x.com/rez0__)**
+
+- Original FFUF skill & helper logic  
+ https://github.com/jthack/ffuf_claude_skill/tree/main/ffuf-skill
+
+  - GitHub : https://github.com/jthack  
+  - X (Twitter) : https://x.com/rez0__
+
+
 #### follow https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
 
 ## Understanding Skills
