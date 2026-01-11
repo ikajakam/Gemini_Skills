@@ -14,7 +14,44 @@ This project is based on and inspired by the work of **[`rez0`](https://x.com/re
 ## Follow for instructions to use `Gemini Agent Skill`
 https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
 
-## Understanding Skills
+### This repository contains a multi-agent skill workflow built for the Gemini CLI, designed to behave like an experienced bug bounty hunter, not a blind scanner.
+
+It combines:
+- JavaScript attack-surface discovery
+- Endpoint enumeration
+- Vulnerability verification
+
+All agent skills share intelligence through a **per-target output memory file (`analysis.txt`)**.
+Each target has its own isolated output directory and all agents operating on that target
+read from and write to / append the same `analysis.txt`.
+
+
+| Component      | Role                                                    |
+| -------------- | ------------------------------------------------------- |
+| `*_helper.py`  | Execute tools and collect raw data                      |
+| `SKILL.md`     | Define agent behavior, constraints, and decision-making |
+| `analysis.txt` | Shared intelligence between agents                      |
+
+No agent “talks” directly to another.
+Agents coordinate through shared artifacts.
+
+#### Each agent:
+
+- Reads `analysis.txt`
+- Extracts context
+- Decides how to act
+- Updates / append `analysis.txt`
+
+Python executes.
+Gemini reasons.
+Files are memory.
+
+### Agent Chain
+```shell
+JSH → FFUF → NUCLEI
+```
+
+### Understanding Skills
 
 ### Read `SKILL.md` to understand how agent skill works and how instructions are interpreted.
 
