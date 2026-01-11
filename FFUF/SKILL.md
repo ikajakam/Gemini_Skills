@@ -6,6 +6,44 @@ description: Expert guidance for ffuf web fuzzing during penetration testing, in
 ## Overview
 FFUF is a fast web fuzzer written in Go, designed for discovering hidden content, directories, files, subdomains, and testing for vulnerabilities during penetration testing. It's significantly faster than traditional tools like dirb or dirbuster.
 
+## Context Inheritance (MANDATORY)
+
+Before constructing ffuf commands, you MUST check for existing
+reconnaissance artifacts for the same target.
+
+Primary sources:
+- jshunt_output/<target>/analysis.txt
+- nuclei_output/<target>/analysis.txt (if present)
+
+If analysis.txt exists:
+- You MUST extract:
+  - Discovered paths (API, admin, internal, versioned)
+  - Authentication mechanisms
+  - Parameter names or ID patterns
+- Use this information to:
+  - Choose wordlists
+  - Decide FUZZ positions
+  - Prefer authenticated fuzzing when applicable
+
+If no prior context exists:
+- Treat the target as cold
+- Use conservative discovery fuzzing only
+
+## Execution Order Awareness (STRICT)
+
+FFUF is an enumeration tool and should be used after
+initial surface discovery.
+
+Preferred order:
+1. JSH — JavaScript attack surface discovery
+2. FFUF — endpoint, parameter, and ID enumeration
+3. NUC — vulnerability verification
+
+If FFUF is invoked without prior JSH context:
+- You SHOULD recommend running JSH first
+- OR restrict ffuf usage to shallow discovery
+
+
 ## Core Concepts
 
 ### The FUZZ Keyword
@@ -849,3 +887,28 @@ ffuf --request req.txt \
      -ac -mc 200 \
      -o idor_results.json
 ```
+## Context Summary (MANDATORY)
+
+When writing or updating analysis.txt, you MUST begin the file
+with a Context Summary section.
+
+The Context Summary MUST appear at the very top of analysis.txt
+and follow this exact format:
+
+=== CONTEXT SUMMARY ===
+Target: <domain>
+
+Tech:
+- <identified frontend/backend technologies>
+
+Auth:
+- <authentication mechanisms observed>
+
+Interesting Paths:
+- <api, admin, internal, versioned paths>
+
+Findings Confidence: <LOW | MEDIUM | HIGH>
+========================
+
+This section is used as shared memory across skills and MUST be
+updated as new information is discovered.
