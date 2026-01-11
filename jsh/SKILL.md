@@ -109,7 +109,6 @@ JavaScript discovery includes:
 
 These are used to surface hidden or privileged attack surface.
 
-
 ## Inline JavaScript Handling (STRICT)
 
 Inline JavaScript files (files prefixed with `inline_`) are considered
@@ -131,3 +130,29 @@ Inline JavaScript files (files prefixed with `inline_`) are considered
 
 Inline JS findings should default to INFO severity unless
 confirmed exploitable through backend interaction.
+
+## Context Summary (MANDATORY)
+
+When writing or updating analysis.txt, you MUST begin the file
+with a Context Summary section.
+
+The Context Summary MUST appear at the very top of analysis.txt
+and follow this exact format:
+
+=== CONTEXT SUMMARY ===
+Target: <domain>
+
+Tech:
+- <identified frontend/backend technologies>
+
+Auth:
+- <authentication mechanisms observed>
+
+Interesting Paths:
+- <api, admin, internal, versioned paths>
+
+Findings Confidence: <LOW | MEDIUM | HIGH>
+========================
+
+This section is used as shared memory across skills and MUST be
+updated as new information is discovered.
