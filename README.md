@@ -11,9 +11,9 @@ This project is based on and inspired by the work of **[`rez0`](https://x.com/re
   - X (Twitter) : https://x.com/rez0__
 
 
-## Follow for instructions to use `Gemini Agent Skill`
+### Follow for instructions to use `Gemini Agent Skill`
 https://github.com/ikajakam/Gemini_Skills/blob/main/FFUF/README.md
-<hr>
+
 ## This repository contains a multi-agent skill workflow built for the Gemini CLI, designed to behave like an experienced bug bounty hunter, not a blind scanner.
 
 It combines:
